@@ -16,9 +16,8 @@ import {
   Button,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { usePathname, useRouter } from "next/navigation";
 import TranslateIcon from "@mui/icons-material/Translate";
-import { useLanguage } from "@/components/LanguageContext";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const StyledTab = styled(Tab)({
   textTransform: "none",
@@ -26,23 +25,27 @@ const StyledTab = styled(Tab)({
   padding: "0 16px",
 });
 
-interface VSCodeLayoutProps {
+interface IDELayoutProps {
   children: ReactNode;
+  activeTab: string;
+  setActiveTab: (tab: string) => void;
 }
 
 const pages = [
-  { name: "About.tsx", path: "/about" },
-  { name: "SkillSet.tsx", path: "/skills" },
-  { name: "Projects.tsx", path: "/projects" },
+  { name: "About.tsx", value: "about" },
+  { name: "SkillSet.tsx", value: "skills" },
+  { name: "Projects.tsx", value: "projects" },
 ];
 
-export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
-  const pathname = usePathname();
-  const router = useRouter();
+export default function IDELayout({
+  children,
+  activeTab,
+  setActiveTab,
+}: IDELayoutProps) {
   const { language, setLanguage } = useLanguage();
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    router.push(newValue);
+    setActiveTab(newValue);
   };
 
   const toggleLanguage = () => {
@@ -50,7 +53,13 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   };
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        height: "100vh",
+        bgcolor: "background.default",
+      }}>
       <AppBar
         position="static"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -80,8 +89,8 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
               {pages.map((page) => (
                 <ListItem key={page.name} disablePadding>
                   <ListItemButton
-                    selected={pathname === page.path}
-                    onClick={() => router.push(page.path)}>
+                    selected={activeTab === page.value}
+                    onClick={() => setActiveTab(page.value)}>
                     <ListItemText primary={page.name} />
                   </ListItemButton>
                 </ListItem>
@@ -91,7 +100,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
         </Drawer>
         <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
           <Tabs
-            value={pathname}
+            value={activeTab}
             onChange={handleTabChange}
             variant="scrollable"
             scrollButtons="auto"
@@ -101,13 +110,13 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                 height: "2px",
                 bottom: 0,
               },
-              ml: "20px", // 左マージンを追加
+              ml: "20px",
             }}>
             {pages.map((page) => (
               <StyledTab
-                key={page.path}
+                key={page.value}
                 label={page.name}
-                value={page.path}
+                value={page.value}
                 sx={{
                   "&.Mui-selected": {
                     color: "primary.main",
@@ -116,7 +125,9 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
               />
             ))}
           </Tabs>
-          <Box sx={{ flexGrow: 1, p: 3, overflow: "auto" }}>{children}</Box>
+          <Box sx={{ flexGrow: 1, p: 3, overflow: "auto", ml: "20px" }}>
+            {children}
+          </Box>
         </Box>
       </Box>
     </Box>

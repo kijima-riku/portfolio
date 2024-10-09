@@ -1,7 +1,5 @@
-// app/layout.tsx
-import "./globals.css";
-import { LanguageProvider } from "@/components/LanguageContext";
-import ThemeRegistry from "@/components/ThemeRegistry";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 export default function RootLayout({
   children,
@@ -11,9 +9,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <LanguageProvider>
-          <ThemeRegistry>{children}</ThemeRegistry>
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

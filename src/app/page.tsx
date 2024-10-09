@@ -1,27 +1,11 @@
-import IDElayout from "@/components/IDElayout";
-import CodeEditor from "@/components/CodeEditor";
+import { Metadata } from "next";
+import MainContent from "@/components/MainContent";
 
-const welcomeCode = `
-function Welcome() {
-  return (
-    <div>
-      <h1>Welcome to My Portfolio</h1>
-      <p>Explore the tabs on the left to learn more about me!</p>
-    </div>
-  );
-}
-
-export default Welcome;
-`;
+export const metadata: Metadata = {
+  title: "My Portfolio",
+  description: "A portfolio website showcasing my skills and projects",
+};
 
 export default function Home() {
-  return (
-    <IDElayout>
-      <CodeEditor
-        fileName="Welcome.tsx"
-        code={welcomeCode}
-        language="typescript"
-      />
-    </IDElayout>
-  );
+  return <MainContent />;
 }
