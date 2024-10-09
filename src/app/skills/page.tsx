@@ -1,5 +1,5 @@
-import IDElayout from "@/components/ui/IDElayout";
-import CodeEditor from "@/components/ui/CodeEditor";
+import IDElayout from "@/components/IDElayout";
+import CodeEditor from "@/components/CodeEditor";
 
 const skillsCode = `
 const SkillSet = {

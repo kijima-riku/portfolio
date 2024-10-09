@@ -1,5 +1,5 @@
 import "./globals.css";
-import ThemeRegistry from "@/components/ui/ThemeRegistry";
+import ThemeRegistry from "@/components/ThemeRegistry";
 
 export default function RootLayout({
   children,

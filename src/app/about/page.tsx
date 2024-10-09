@@ -1,5 +1,9 @@
-import IDElayout from "@/components/ui/IDElayout";
-import CodeEditor from "@/components/ui/CodeEditor";
+import dynamic from "next/dynamic";
+import CodeEditor from "@/components/CodeEditor";
+
+const VSCodeLayout = dynamic(() => import("@/components/IDElayout"), {
+  ssr: false,
+});
 
 const aboutCode = `
 const AboutMe = {
@@ -16,8 +20,8 @@ export default AboutMe;
 
 export default function About() {
   return (
-    <IDElayout>
+    <VSCodeLayout>
       <CodeEditor fileName="About.tsx" code={aboutCode} language="typescript" />
-    </IDElayout>
+    </VSCodeLayout>
   );
 }
