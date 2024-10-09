@@ -1,11 +1,14 @@
+"use client";
+
 import dynamic from "next/dynamic";
 import CodeEditor from "@/components/CodeEditor";
+import { useLanguage } from "@/components/LanguageContext";
 
 const VSCodeLayout = dynamic(() => import("@/components/IDElayout"), {
   ssr: false,
 });
 
-const aboutCode = `
+const aboutCodeEn = `
 const AboutMe = {
   name: "Your Name",
   role: "Full Stack Developer",
@@ -18,10 +21,29 @@ const AboutMe = {
 export default AboutMe;
 `;
 
+const aboutCodeJa = `
+const AboutMe = {
+  name: "あなたの名前",
+  role: "フルスタック開発者",
+  location: "東京、日本",
+  interests: ["ウェブ開発", "AI", "オープンソース"],
+  currentlyLearning: "Rust",
+  funFact: "ルービックキューブを2分以内に解けます！"
+};
+
+export default AboutMe;
+`;
+
 export default function About() {
+  const { language } = useLanguage();
+
   return (
     <VSCodeLayout>
-      <CodeEditor fileName="About.tsx" code={aboutCode} language="typescript" />
+      <CodeEditor
+        fileName="About.tsx"
+        code={language === "en" ? aboutCodeEn : aboutCodeJa}
+        language="typescript"
+      />
     </VSCodeLayout>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode } from "react";
 import {
   Box,
   AppBar,
@@ -13,9 +13,18 @@ import {
   ListItemText,
   Tabs,
   Tab,
+  Button,
 } from "@mui/material";
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { usePathname, useRouter } from "next/navigation";
+import TranslateIcon from "@mui/icons-material/Translate";
+import { useLanguage } from "@/components/LanguageContext";
+
+const StyledTab = styled(Tab)({
+  textTransform: "none",
+  minHeight: "48px",
+  padding: "0 16px",
+});
 
 interface VSCodeLayoutProps {
   children: ReactNode;
@@ -27,20 +36,17 @@ const pages = [
   { name: "Projects.tsx", path: "/projects" },
 ];
 
-const StyledTab = styled(Tab)({
-  textTransform: "none", // これにより大文字変換が無効になります
-  minHeight: "48px", // タブの高さを調整
-  padding: "0 16px", // パディングを調整
-});
-
 export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState(pathname);
+  const { language, setLanguage } = useLanguage();
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
-    setActiveTab(newValue);
     router.push(newValue);
+  };
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "ja" : "en");
   };
 
   return (
@@ -49,9 +55,15 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
         position="static"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             My Portfolio
           </Typography>
+          <Button
+            color="inherit"
+            onClick={toggleLanguage}
+            startIcon={<TranslateIcon />}>
+            {language === "en" ? "English" : "日本語"}
+          </Button>
         </Toolbar>
       </AppBar>
       <Box sx={{ display: "flex", flexGrow: 1, overflow: "hidden" }}>
@@ -69,10 +81,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                 <ListItem key={page.name} disablePadding>
                   <ListItemButton
                     selected={pathname === page.path}
-                    onClick={() => {
-                      setActiveTab(page.path);
-                      router.push(page.path);
-                    }}>
+                    onClick={() => router.push(page.path)}>
                     <ListItemText primary={page.name} />
                   </ListItemButton>
                 </ListItem>
@@ -82,17 +91,17 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
         </Drawer>
         <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
           <Tabs
-            value={activeTab}
+            value={pathname}
             onChange={handleTabChange}
             variant="scrollable"
             scrollButtons="auto"
             sx={{
-              minHeight: "48px", // タブバーの高さを調整
+              minHeight: "48px",
               "& .MuiTabs-indicator": {
-                // インジケーターのスタイルを調整
                 height: "2px",
                 bottom: 0,
               },
+              ml: "20px", // 左マージンを追加
             }}>
             {pages.map((page) => (
               <StyledTab
@@ -101,7 +110,7 @@ export default function VSCodeLayout({ children }: VSCodeLayoutProps) {
                 value={page.path}
                 sx={{
                   "&.Mui-selected": {
-                    color: "primary.main", // 選択されたタブの色を調整
+                    color: "primary.main",
                   },
                 }}
               />

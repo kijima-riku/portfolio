@@ -1,4 +1,6 @@
+// app/layout.tsx
 import "./globals.css";
+import { LanguageProvider } from "@/components/LanguageContext";
 import ThemeRegistry from "@/components/ThemeRegistry";
 
 export default function RootLayout({
@@ -9,7 +11,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <ThemeRegistry>{children}</ThemeRegistry>
+        <LanguageProvider>
+          <ThemeRegistry>{children}</ThemeRegistry>
+        </LanguageProvider>
       </body>
     </html>
   );
