@@ -25,10 +25,14 @@ export default function CodeEditor({
         language={language}
         style={vscDarkPlus}
         showLineNumbers={true}
+        wrapLines={true}
         customStyle={{
           fontSize: "1.2rem",
           lineHeight: "1.5",
           margin: 0,
+          wordBreak: "break-word",
+          whiteSpace: "pre-wrap",
+          overflowWrap: "break-word",
         }}
         lineNumberStyle={{
           minWidth: "3em",

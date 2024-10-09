@@ -26,7 +26,7 @@ export default AboutMe;
 const aboutCodeJa = `
 const AboutMe = {
   name: "木嶋 陸",
-  role: "志望フルスタック開発者",
+  role: "(自称)フルスタックエンジニア",
   education: "2025年卒業予定",
   location: "新潟県出身、東京都勤務",
   careerGoal: "バックエンドエンジニアとしてキャリアをスタート",
