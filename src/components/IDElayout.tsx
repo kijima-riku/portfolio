@@ -65,7 +65,7 @@ export default function IDELayout({
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            "Kijima's Portfolio"
+            Kijima{"\u2019"}s Portfolio
           </Typography>
           <Button
             color="inherit"
