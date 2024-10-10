@@ -12,8 +12,8 @@ const SkillSet = [
       {
         name: "Languages",
         skills: [
-          { name: "HTML", proficiency: 5 },
-          { name: "CSS", proficiency: 5 },
+          { name: "HTML", proficiency: 3 },
+          { name: "CSS", proficiency: 3 },
           { name: "JavaScript", proficiency: 5 },
           { name: "TypeScript", proficiency: 4 }
         ]
@@ -21,13 +21,13 @@ const SkillSet = [
       {
         name: "Preprocessors",
         skills: [
-          { name: "SCSS", proficiency: 4 }
+          { name: "SCSS", proficiency: 3 }
         ]
       },
       {
         name: "Frameworks/Libraries",
         skills: [
-          { name: "React", proficiency: 4 },
+          { name: "React", proficiency: 5 },
           { name: "Next.js", proficiency: 4 }
         ]
       }
@@ -40,14 +40,14 @@ const SkillSet = [
         name: "Languages",
         skills: [
           { name: "Java", proficiency: 3 },
-          { name: "PHP", proficiency: 4 }
+          { name: "PHP", proficiency: 2.5 }
         ]
       },
       {
         name: "Frameworks",
         skills: [
-          { name: "Spring Boot", proficiency: 3 },
-          { name: "Laravel", proficiency: 4 }
+          { name: "Spring Boot", proficiency: 2.5 },
+          { name: "Laravel", proficiency: 3 }
         ]
       }
     ]
@@ -55,22 +55,22 @@ const SkillSet = [
   {
     category: "Database",
     skills: [
-      { name: "MySQL", proficiency: 4 },
+      { name: "MySQL", proficiency: 3 },
       { name: "PostgreSQL", proficiency: 3 }
     ]
   },
   {
     category: "DevOps & Tools",
     skills: [
-      { name: "Git", proficiency: 5 },
-      { name: "Docker", proficiency: 3 },
-      { name: "AWS", proficiency: 3 }
+      { name: "Git", proficiency: 3.5 },
+      { name: "Docker", proficiency: 2 },
+      { name: "AWS", proficiency: 2.5 }
     ]
   },
   {
     category: "API",
     skills: [
-      { name: "REST API", proficiency: 4 }
+      { name: "REST API", proficiency: 4.5 }
     ]
   }
 ];
@@ -86,8 +86,8 @@ const SkillSet = [
       {
         name: "言語",
         skills: [
-          { name: "HTML", proficiency: 5 },
-          { name: "CSS", proficiency: 5 },
+          { name: "HTML", proficiency: 3 },
+          { name: "CSS", proficiency: 3 },
           { name: "JavaScript", proficiency: 5 },
           { name: "TypeScript", proficiency: 4 }
         ]
@@ -95,13 +95,13 @@ const SkillSet = [
       {
         name: "プリプロセッサ",
         skills: [
-          { name: "SCSS", proficiency: 4 }
+          { name: "SCSS", proficiency: 3 }
         ]
       },
       {
         name: "フレームワーク/ライブラリ",
         skills: [
-          { name: "React", proficiency: 4 },
+          { name: "React", proficiency: 5 },
           { name: "Next.js", proficiency: 4 }
         ]
       }
@@ -114,14 +114,14 @@ const SkillSet = [
         name: "言語",
         skills: [
           { name: "Java", proficiency: 3 },
-          { name: "PHP", proficiency: 4 }
+          { name: "PHP", proficiency: 2.5 }
         ]
       },
       {
         name: "フレームワーク",
         skills: [
-          { name: "Spring Boot", proficiency: 3 },
-          { name: "Laravel", proficiency: 4 }
+          { name: "Spring Boot", proficiency: 2.5 },
+          { name: "Laravel", proficiency: 3 }
         ]
       }
     ]
@@ -129,22 +129,22 @@ const SkillSet = [
   {
     category: "データベース",
     skills: [
-      { name: "MySQL", proficiency: 4 },
+      { name: "MySQL", proficiency: 3 },
       { name: "PostgreSQL", proficiency: 3 }
     ]
   },
   {
     category: "DevOpsとツール",
     skills: [
-      { name: "Git", proficiency: 5 },
-      { name: "Docker", proficiency: 3 },
-      { name: "AWS", proficiency: 3 }
+      { name: "Git", proficiency: 3.5 },
+      { name: "Docker", proficiency: 2 },
+      { name: "AWS", proficiency: 2.5 }
     ]
   },
   {
     category: "API",
     skills: [
-      { name: "REST API", proficiency: 4 }
+      { name: "REST API", proficiency: 4.5 }
     ]
   }
 ];
