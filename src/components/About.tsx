@@ -9,7 +9,7 @@ const AboutMe = {
   name: "Kijima Riku",
   role: "(would-be) Full Stack Developer",
   education: "Graduating in 2025",
-  location: "From Niigata, Working in Tokyo, Japan",
+  prefecture: "From Niigata, Working in Tokyo, Japan",
   careerPath: "Starting career as a Backend Engineer",
   engineerVision: "Aiming to become an engineer capable of making technology decisions across frontend, backend, and infrastructure.",
   focusAreas: {
@@ -28,7 +28,7 @@ const AboutMe = {
   name: "木嶋 陸",
   role: "(自称)フルスタックエンジニア",
   education: "2025年卒業予定",
-  location: "新潟県出身、東京都勤務",
+  prefecture: "新潟県出身、東京都勤務",
   careerPath: "バックエンドエンジニアとしてキャリアをスタート",
   engineerVision: "フロントエンド、バックエンド、インフラを問わず技術選定できるエンジニアを目指す",
   focusAreas: {
