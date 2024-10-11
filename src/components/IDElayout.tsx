@@ -1,6 +1,6 @@
 "use client";
 
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import {
   Box,
   AppBar,
@@ -14,9 +14,12 @@ import {
   Tabs,
   Tab,
   Button,
+  IconButton,
+  useMediaQuery,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles";
 import TranslateIcon from "@mui/icons-material/Translate";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const StyledTab = styled(Tab)({
@@ -43,6 +46,9 @@ export default function IDELayout({
   setActiveTab,
 }: IDELayoutProps) {
   const { language, setLanguage } = useLanguage();
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: string) => {
     setActiveTab(newValue);
@@ -50,6 +56,10 @@ export default function IDELayout({
 
   const toggleLanguage = () => {
     setLanguage(language === "en" ? "ja" : "en");
+  };
+
+  const toggleDrawer = () => {
+    setDrawerOpen(!drawerOpen);
   };
 
   return (
@@ -64,6 +74,15 @@ export default function IDELayout({
         position="static"
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
+          {isMobile && (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={toggleDrawer}>
+              <MenuIcon />
+            </IconButton>
+          )}
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
             Kijima{"\u2019"}s Portfolio
           </Typography>
@@ -75,13 +94,19 @@ export default function IDELayout({
           </Button>
         </Toolbar>
       </AppBar>
-      <Box sx={{ display: "flex", flexGrow: 1, overflow: "hidden" }}>
+
+      <Box sx={{ display: "flex", flexGrow: 1, overflow: "auto" }}>
         <Drawer
-          variant="permanent"
+          variant={isMobile ? "temporary" : "permanent"}
+          open={drawerOpen}
+          onClose={toggleDrawer}
           sx={{
             width: 240,
             flexShrink: 0,
-            [`& .MuiDrawer-paper`]: { width: 240, boxSizing: "border-box" },
+            [`& .MuiDrawer-paper`]: {
+              width: 240,
+              boxSizing: "border-box",
+            },
           }}>
           <Toolbar />
           <Box sx={{ overflow: "auto" }}>
@@ -90,7 +115,10 @@ export default function IDELayout({
                 <ListItem key={page.name} disablePadding>
                   <ListItemButton
                     selected={activeTab === page.value}
-                    onClick={() => setActiveTab(page.value)}>
+                    onClick={() => {
+                      setActiveTab(page.value);
+                      if (isMobile) toggleDrawer();
+                    }}>
                     <ListItemText primary={page.name} />
                   </ListItemButton>
                 </ListItem>
@@ -98,7 +126,14 @@ export default function IDELayout({
             </List>
           </Box>
         </Drawer>
-        <Box sx={{ flexGrow: 1, display: "flex", flexDirection: "column" }}>
+
+        <Box
+          sx={{
+            flexGrow: 1,
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+          }}>
           <Tabs
             value={activeTab}
             onChange={handleTabChange}
@@ -110,7 +145,7 @@ export default function IDELayout({
                 height: "2px",
                 bottom: 0,
               },
-              ml: "20px",
+              ml: isMobile ? "0px" : "20px",
             }}>
             {pages.map((page) => (
               <StyledTab
@@ -125,7 +160,15 @@ export default function IDELayout({
               />
             ))}
           </Tabs>
-          <Box sx={{ flexGrow: 1, p: 3, overflow: "auto", ml: "20px" }}>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              p: 3,
+              overflow: "auto",
+              ml: isMobile ? "0px" : "20px",
+              width: "100%",
+            }}>
             {children}
           </Box>
         </Box>

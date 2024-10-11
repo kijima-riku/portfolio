@@ -17,7 +17,14 @@ export default function CodeEditor({
   language,
 }: CodeEditorProps) {
   return (
-    <Box sx={{ bgcolor: "#1E1E1E", p: 2, borderRadius: 1 }}>
+    <Box
+      sx={{
+        bgcolor: "#1E1E1E",
+        p: 2,
+        borderRadius: 1,
+        width: "100%",
+        overflow: "auto",
+      }}>
       <Typography variant="h6" sx={{ color: "#D4D4D4", mb: 2 }}>
         {fileName}
       </Typography>
@@ -30,6 +37,7 @@ export default function CodeEditor({
           fontSize: "1.2rem",
           lineHeight: "1.5",
           margin: 0,
+          padding: "1em",
           wordBreak: "break-word",
           whiteSpace: "pre-wrap",
           overflowWrap: "break-word",
@@ -39,6 +47,14 @@ export default function CodeEditor({
           paddingRight: "1em",
           textAlign: "right",
           userSelect: "none",
+        }}
+        codeTagProps={{
+          style: {
+            fontSize: "1.2rem",
+            lineHeight: "1.8",
+            whiteSpace: "pre-wrap",
+            wordBreak: "break-word",
+          },
         }}>
         {code}
       </SyntaxHighlighter>
